@@ -2,7 +2,7 @@ CREATE DATABASE IF NOT EXISTS database1;
 
 USE database1;
 
---DROP TABLES Users, Virtual_Assistants, Tasks, Virtual_Assistant_Ratings, Taskfiles, Calls;
+# DROP TABLES Users, Virtual_Assistants, Tasks, Virtual_Assistant_Ratings, Taskfiles, Calls;
 
 CREATE TABLE IF NOT EXISTS Users(
 	`user_id` VARCHAR(255) NOT NULL UNIQUE,
