@@ -1,8 +1,8 @@
-CREATE DATABASE IF NOT EXISTS database1;
+CREATE DATABASE IF NOT EXISTS todoDB;
 
-USE database1;
+USE todoDB;
 
-# DROP TABLES Users, Virtual_Assistants, Tasks, Virtual_Assistant_Ratings, Taskfiles, Calls;
+DROP TABLES Users, Virtual_Assistants, Tasks, Virtual_Assistant_Ratings, Taskfiles, Calls;
 
 CREATE TABLE IF NOT EXISTS Users(
 	`user_id` VARCHAR(255) NOT NULL UNIQUE,
@@ -43,14 +43,16 @@ CREATE TABLE IF NOT EXISTS Tasks(
 	`task_id` VARCHAR(255) NOT NULL UNIQUE,
     `user_id` VARCHAR(255) NOT NULL,
     `name` CHAR(255) NOT NULL UNIQUE,
+	`title` CHAR NOT NULL,
     `description` TEXT NOT NULL,
-    `expiryDate` CHAR(255),
     `status` CHAR(50) NOT NULL,
-    `virtual_assistant_id` VARCHAR(255) NOT NULL,
+	`start_time` DATETIME default CURRENT_TIMESTAMP,
+	`end_time` DATETIME NOT NULL,
+    `created_at` DATETIME default CURRENT_TIMESTAMP,
+    `updated_at` DATETIME NOT NULL default CURRENT_TIMESTAMP,
     
     PRIMARY KEY(task_id),
-    FOREIGN KEY (user_id) REFERENCES Users(user_id),
-    FOREIGN KEY (virtual_assistant_id) REFERENCES Virtual_Assistants(virtual_assistant_id)
+    FOREIGN KEY (user_id) REFERENCES Users(user_id)
 );
 
 CREATE TABLE IF NOT EXISTS Virtual_Assistant_Ratings(
