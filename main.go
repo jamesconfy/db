@@ -19,7 +19,6 @@ func main() {
 		panic(err1.Error())
 	}
 
-	// Get environment variables
 	DB_USER := os.Getenv("DB_USER")
 	DB_PASSWORD := os.Getenv("DB_PASSWORD")
 	DB_HOST := os.Getenv("DB_HOST")
@@ -34,12 +33,14 @@ func main() {
 	}
 	defer db.Close()
 
+	// db.Exec(db.sql)
+
 	// Ping the database to make sure the connection is still active
-	connect := db.Ping()
-	if connect != nil {
-		fmt.Println("Could not connect to database")
-		panic(connect.Error())
-	}
+	// connect := db.Ping()
+	// if connect != nil {
+	// 	fmt.Println("Could not connect to database")
+	// 	panic(connect.Error())
+	// }
 
 	// Select data from the database
 	users, err := db.Query(`SELECT * from Users`)
@@ -49,7 +50,7 @@ func main() {
 	}
 
 	fmt.Println(users)
-	defer users.Close()
+	// defer users.Close()
 
 	fmt.Println("Connection successful")
 }
