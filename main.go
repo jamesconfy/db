@@ -27,7 +27,8 @@ func main() {
 	DB_DATABASE := os.Getenv("DB_DATABASE")
 
 	// Create a connection to the database
-	db, err := sql.Open("mysql", fmt.Sprintf("%s:%s@tcp(%s:%s)/%s", DB_USER, DB_PASSWORD, DB_HOST, DB_PORT, DB_DATABASE))
+	database_uri := fmt.Sprintf("%s:%s@tcp(%s:%s)/%s", DB_USER, DB_PASSWORD, DB_HOST, DB_PORT, DB_DATABASE)
+	db, err := sql.Open("mysql", database_uri)
 	if err != nil {
 		log.Fatal(err)
 	}
